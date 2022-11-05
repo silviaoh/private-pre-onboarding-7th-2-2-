@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+  color: ${({ theme }) => theme.colors.BLACK};
  }
 
  html {
@@ -15,9 +16,13 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-size: 62.5%;
 
-    @media screen and (max-width: 360px) {
-      font-size: 2.7778vw;
-    }
+    /* @media screen and (max-width:1440px) {
+      font-size: 0.6944vw;
+    } */
+
+    /* @media screen and (max-width: 1020px) {
+    font-size: 0.9804vw;
+    } */
  }
 
   body {
@@ -58,19 +63,9 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  .markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
-
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px;
-		}
-	}
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+  }
 `;
 
 export default GlobalStyle;

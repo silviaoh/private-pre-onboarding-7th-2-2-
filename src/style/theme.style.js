@@ -3,7 +3,7 @@ const colors = {
   WHITE: '#ffffff',
   PURPLE: '#586CF5',
 
-  BACKGROUND_GRAY: '#F6F7F8',
+  BACKGROUND_GRAY: '#F6F7F9',
   BORDER_GRAY: '#EDEFF1',
 
   GRAPH_GRAY: '#94A2AD',

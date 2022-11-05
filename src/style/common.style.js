@@ -17,3 +17,13 @@ export const FlexBox = styled.div`
 `;
 
 export const PageTitleH2 = styled.h2``;
+
+export const GrayFontStyle = css`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.GRAPH_GRAY};
+  white-space: nowrap;
+`;
+
+export const GrayFontParagraph = styled.p`
+  ${GrayFontStyle}
+`;

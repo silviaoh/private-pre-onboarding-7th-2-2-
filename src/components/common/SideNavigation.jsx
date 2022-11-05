@@ -1,48 +1,61 @@
 import React from 'react';
 import styled from 'styled-components';
-import { iconMenu01Off, iconMenu02Off } from '../../assets';
+import { IconGuide, IconMenu01Off, IconMenu02Off, logo } from '../../assets';
 import { Link } from 'react-router-dom';
+import {
+  FlexBox,
+  FlexStyle,
+  GrayFontParagraph,
+  GrayFontStyle,
+} from '../../style/common.style';
 
 const SideNavigation = () => {
   return (
     <SideNavigationLayout>
       <SideNavigationHeader>
-        <LogoImageBox></LogoImageBox>
+        <LogoImageBox>
+          <img src={logo} alt="LEVER" />
+        </LogoImageBox>
       </SideNavigationHeader>
-      <SideNavigationSection>
-        <ServiceSection>
-          <NavTitleH3>서비스</NavTitleH3>
-          {/* TODO: react-select */}
-        </ServiceSection>
-        <AdvertisingCenterSection>
-          <NavTitleH3>광고 센터</NavTitleH3>
-          <AdvertisingCenterNav>
-            <Link to="/">
-              <NavIconBox>
-                <img src={iconMenu01Off} alt="dashboard" />
-              </NavIconBox>
-              <NavSpan>대시보드</NavSpan>
-            </Link>
-            <Link to="/manage">
-              <NavIconBox>
-                <img src={iconMenu02Off} alt="advertisement" />
-              </NavIconBox>
-              <NavSpan>광고관리</NavSpan>
-            </Link>
-          </AdvertisingCenterNav>
-        </AdvertisingCenterSection>
-        <LeverExtraSection>
-          <BlueGuideBox>
-            <GuideIconBox></GuideIconBox>
-            <GuideDescriptionBox>
+      <SideNavigationSection
+        flexDirection="column"
+        justifyContent="space-between"
+      >
+        <section>
+          <section>
+            <NavTitleH3>서비스</NavTitleH3>
+            {/* TODO: react-select */}
+          </section>
+          <section>
+            <NavTitleH3>광고 센터</NavTitleH3>
+            <AdvertisingCenterNav flexDirection="column" gap="0.2rem">
+              <NavLink to="/" alignItems="center" gap="1.2rem">
+                <IconMenu01Off width="2rem" height="2rem" />
+                <span>대시보드</span>
+              </NavLink>
+              <NavLink to="/manage" alignItems="center" gap="1.2rem">
+                <IconMenu02Off width="2rem" height="2rem" />
+                <span>광고관리</span>
+              </NavLink>
+            </AdvertisingCenterNav>
+          </section>
+        </section>
+        <LeverExtraSection flexDirection="column" gap="4rem">
+          <BlueGuideBox
+            justifyContent="center"
+            alignItems="center"
+            gap="0.8rem"
+          >
+            <IconGuide width="4rem" height="4rem" />
+            <FlexBox flexDirection="column" gap="0.7rem">
               <GuideH3>레버 이용 가이드</GuideH3>
-              <GuideSpan>시작하기 전에 알아보기</GuideSpan>
-            </GuideDescriptionBox>
+              <GrayFontParagraph>시작하기 전에 알아보기</GrayFontParagraph>
+            </FlexBox>
           </BlueGuideBox>
-          <ExtraBox>
-            <ExtraParagraph>레버는 함께 만들어갑니다.</ExtraParagraph>
-            <Link to="#">이용약관</Link>
-          </ExtraBox>
+          <FlexBox flexDirection="column" gap="1rem">
+            <GrayFontParagraph>레버는 함께 만들어갑니다.</GrayFontParagraph>
+            <PolicyLink to="#">이용약관</PolicyLink>
+          </FlexBox>
         </LeverExtraSection>
       </SideNavigationSection>
     </SideNavigationLayout>
@@ -51,38 +64,79 @@ const SideNavigation = () => {
 
 export default SideNavigation;
 
-const SideNavigationLayout = styled.aside``;
+const SideNavigationLayout = styled.aside`
+  padding: 6rem 4rem;
+`;
 
-const SideNavigationHeader = styled.header``;
+const SideNavigationHeader = styled.header`
+  padding-bottom: 6rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.BORDER_GRAY};
+`;
 
-const SideNavigationSection = styled.section``;
+const SideNavigationSection = styled.section`
+  ${FlexStyle}
+  padding: 6rem 0;
+  height: 100%;
+`;
 
-const ServiceSection = styled.section``;
+const LeverExtraSection = styled.section`
+  ${FlexStyle}
+`;
 
-const AdvertisingCenterSection = styled.section``;
+const AdvertisingCenterNav = styled.nav`
+  ${FlexStyle}
+`;
 
-const LeverExtraSection = styled.section``;
+const LogoImageBox = styled.div`
+  width: 12.4rem;
+  height: 3rem;
 
-const AdvertisingCenterNav = styled.nav``;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
-const LogoImageBox = styled.div``;
+const BlueGuideBox = styled.div`
+  ${FlexStyle}
+  padding: 3rem 2rem;
+  background-color: #e5f4fd;
+  border-radius: 10px;
+`;
 
-const NavIconBox = styled.div``;
+const NavTitleH3 = styled.h3`
+  padding-left: 1.6rem;
+  padding-bottom: 1.3rem;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.GRAPH_GRAY};
+`;
 
-const BlueGuideBox = styled.div``;
+const GuideH3 = styled.h3`
+  font-size: 1.6rem;
+`;
 
-const GuideIconBox = styled.div``;
+const NavLink = styled(Link)`
+  ${FlexStyle}
+  padding: 2rem 2.2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 10px;
 
-const GuideDescriptionBox = styled.div``;
+  &:hover {
+    color: ${({ theme }) => theme.colors.PURPLE};
+    background-color: ${({ theme }) => theme.colors.BORDER_GRAY};
+  }
 
-const ExtraBox = styled.div``;
+  &:hover .menu-ad-center,
+  &:hover .menu-ad-management {
+    fill: ${({ theme }) => theme.colors.PURPLE};
+  }
+  &:hover > span {
+    color: ${({ theme }) => theme.colors.PURPLE};
+  }
+`;
 
-const NavTitleH3 = styled.h3``;
-
-const GuideH3 = styled.h3``;
-
-const NavSpan = styled.span``;
-
-const GuideSpan = styled.span``;
-
-const ExtraParagraph = styled.p``;
+const PolicyLink = styled(Link)`
+  ${GrayFontStyle}
+  text-decoration: underline;
+`;

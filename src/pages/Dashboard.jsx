@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { iconPolygonDown } from '../assets';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
 import { PageTitleH2 } from '../style/common.style';
 
@@ -21,7 +20,7 @@ const Dashboard = () => {
                 <StatusValueSpan>697%</StatusValueSpan>
                 <FlexBox>
                   <ArrowIconBox>
-                    <img src={iconPolygonDown} alt="down" />
+                    {/* <img src={iconPolygonDown} alt="down" /> */}
                   </ArrowIconBox>
                   <IncreaseDecreaseValueSpan></IncreaseDecreaseValueSpan>
                 </FlexBox>

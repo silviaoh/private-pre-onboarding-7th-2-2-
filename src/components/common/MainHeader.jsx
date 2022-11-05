@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { iconAlarm, iconSetting } from '../../assets';
 
 const MainHeader = () => {
   return (
     <RootMainHeaderLayout>
       <MainHeaderBox>
-        <AlarmIconBox>
-          <img src={iconAlarm} alt="alarm" />
-        </AlarmIconBox>
+        <AlarmIconBox>{/* <img src={iconAlarm} alt="alarm" /> */}</AlarmIconBox>
         <SettingIconBox>
-          <img src={iconSetting} alt="setting" />
+          {/* <img src={iconSetting} alt="setting" /> */}
         </SettingIconBox>
         <ProfileWrapperBox>
           <ProfileIconBox></ProfileIconBox>
