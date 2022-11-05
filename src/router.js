@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import SideNavLayout from './components/layout/SideNavLayout.tsx';
+import AdvertisingManagement from './pages/AdvertisingManagement';
 
 const router = () => {
   return (
@@ -9,6 +10,7 @@ const router = () => {
       <Routes>
         <Route element={<SideNavLayout />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/management" element={<AdvertisingManagement />} />
         </Route>
       </Routes>
     </BrowserRouter>

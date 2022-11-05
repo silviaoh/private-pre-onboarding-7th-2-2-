@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <MainHeaderLayout>
       <DashboardTitleSection>
-        <DashboardTitleH2>대시보드</DashboardTitleH2>
+        <PageTitleH2>대시보드</PageTitleH2>
         {/* TODO: react-datepicker */}
       </DashboardTitleSection>
       <IntegratedAdStatusSection>
@@ -47,7 +47,6 @@ const NumberStatusBox = styled.div``;
 const FlexBox = styled.div``;
 const StatusValueSpan = styled.span``;
 
-const DashboardTitleH2 = styled.h2``;
 const IntegratedAdStatusH3 = styled.h3``;
 
 const StatueTitleH3 = styled.h3``;
