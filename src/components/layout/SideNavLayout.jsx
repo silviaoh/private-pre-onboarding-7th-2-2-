@@ -6,7 +6,7 @@ import SideNavigation from '../common/SideNavigation';
 
 const SideNavLayout = () => {
   return (
-    <SideNavLayoutSection>
+    <SideNavLayoutSection gap="4rem">
       <SideNavigation />
       <SideNavLayoutMain>
         <Outlet />
@@ -19,16 +19,17 @@ export default SideNavLayout;
 
 const SideNavLayoutSection = styled.section`
   ${FlexStyle}
-  background-color: ${({ theme }) => theme.colors.WHITE};
   min-height: 100vh;
-  overflow-y: auto;
+  background-color: ${({ theme }) => theme.colors.BACKGROUND_GRAY};
 
   > aside {
     flex-basis: 35rem;
+    flex-grow: 1;
   }
 `;
 
 const SideNavLayoutMain = styled.main`
   background-color: ${({ theme }) => theme.colors.BACKGROUND_GRAY};
+  margin-right: 4rem;
   width: 100%;
 `;

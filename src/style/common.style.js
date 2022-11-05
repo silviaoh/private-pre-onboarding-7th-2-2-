@@ -16,8 +16,6 @@ export const FlexBox = styled.div`
   ${FlexStyle}
 `;
 
-export const PageTitleH2 = styled.h2``;
-
 export const GrayFontStyle = css`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.GRAPH_GRAY};
@@ -26,4 +24,15 @@ export const GrayFontStyle = css`
 
 export const GrayFontParagraph = styled.p`
   ${GrayFontStyle}
+`;
+
+export const CardLayoutSection = styled.section`
+  padding: 4rem;
+  background-color: ${({ theme }) => theme.colors.WHITE};
+  border-radius: 20px;
+`;
+
+export const PageTitleH2 = styled.h2`
+  font-size: 2.6rem;
+  font-weight: 900;
 `;

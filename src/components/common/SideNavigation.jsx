@@ -33,7 +33,7 @@ const SideNavigation = () => {
                 <IconMenu01Off width="2rem" height="2rem" />
                 <span>대시보드</span>
               </NavLink>
-              <NavLink to="/manage" alignItems="center" gap="1.2rem">
+              <NavLink to="/management" alignItems="center" gap="1.2rem">
                 <IconMenu02Off width="2rem" height="2rem" />
                 <span>광고관리</span>
               </NavLink>
@@ -66,6 +66,7 @@ export default SideNavigation;
 
 const SideNavigationLayout = styled.aside`
   padding: 6rem 4rem;
+  background-color: ${({ theme }) => theme.colors.WHITE};
 `;
 
 const SideNavigationHeader = styled.header`
