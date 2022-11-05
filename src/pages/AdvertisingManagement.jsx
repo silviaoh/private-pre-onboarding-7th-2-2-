@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import { PageTitleH2 } from '../style/common.style';
 
 const AdvertisingManagement = () => {
   return (
@@ -37,7 +38,6 @@ const AdCardArticle = styled.article``;
 const CardContentList = styled.ul``;
 const ContentItem = styled.li``;
 
-const PageTitleH2 = styled.h2``;
 const CardTitleH2 = styled.h2``;
 const ContentTitleH2 = styled.h2``;
 const ContentParagraph = styled.p``;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { iconPolygonDown } from '../assets';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import { PageTitleH2 } from '../style/common.style';
 
 const Dashboard = () => {
   return (

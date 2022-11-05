@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import SideNavLayout from './components/layout/SideNavLayout.tsx';
+import SideNavLayout from './components/layout/SideNavLayout';
 import AdvertisingManagement from './pages/AdvertisingManagement';
 
 const router = () => {
