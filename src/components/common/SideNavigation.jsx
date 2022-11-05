@@ -14,9 +14,9 @@ const SideNavigation = () => {
           <NavTitleH3>서비스</NavTitleH3>
           {/* TODO: react-select */}
         </ServiceSection>
-        <AdvertisementCenterSection>
+        <AdvertisingCenterSection>
           <NavTitleH3>광고 센터</NavTitleH3>
-          <AdvertisementCenterNav>
+          <AdvertisingCenterNav>
             <Link to="/">
               <NavIconBox>
                 <img src={iconMenu01Off} alt="dashboard" />
@@ -29,8 +29,8 @@ const SideNavigation = () => {
               </NavIconBox>
               <NavSpan>광고관리</NavSpan>
             </Link>
-          </AdvertisementCenterNav>
-        </AdvertisementCenterSection>
+          </AdvertisingCenterNav>
+        </AdvertisingCenterSection>
         <LeverExtraSection>
           <BlueGuideBox>
             <GuideIconBox></GuideIconBox>
@@ -59,11 +59,11 @@ const SideNavigationSection = styled.section``;
 
 const ServiceSection = styled.section``;
 
-const AdvertisementCenterSection = styled.section``;
+const AdvertisingCenterSection = styled.section``;
 
 const LeverExtraSection = styled.section``;
 
-const AdvertisementCenterNav = styled.nav``;
+const AdvertisingCenterNav = styled.nav``;
 
 const LogoImageBox = styled.div``;
 
