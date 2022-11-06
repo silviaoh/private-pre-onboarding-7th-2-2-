@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconGuide, IconMenu01Off, IconMenu02Off, logo } from '../../assets';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   FlexBox,
   FlexStyle,
   GrayFontParagraph,
   GrayFontStyle,
 } from '../../style/common.style';
+import CustomSelect from '../select/CustomSelect';
 
 const SideNavigation = () => {
+  const location = useLocation();
+  const isPathDashboard = location.pathname === '/';
+  const isPathAdManagement = location.pathname === '/management';
   return (
     <SideNavigationLayout>
       <SideNavigationHeader>
@@ -25,15 +29,34 @@ const SideNavigation = () => {
           <section>
             <NavTitleH3>서비스</NavTitleH3>
             {/* TODO: react-select */}
+            <CustomSelect
+              placeholder="서비스 선택하기"
+              options={[
+                { label: '매드업', value: 'madup' },
+                { label: '서비스 추가하기', value: 'add' },
+              ]}
+              padding="1.2rem 1rem"
+              marginBottom="5.5rem"
+            />
           </section>
           <section>
             <NavTitleH3>광고 센터</NavTitleH3>
             <AdvertisingCenterNav flexDirection="column" gap="0.2rem">
-              <NavLink to="/" alignItems="center" gap="1.2rem">
+              <NavLink
+                to="/"
+                alignItems="center"
+                gap="1.2rem"
+                className={isPathDashboard && 'active'}
+              >
                 <IconMenu01Off width="2rem" height="2rem" />
                 <span>대시보드</span>
               </NavLink>
-              <NavLink to="/management" alignItems="center" gap="1.2rem">
+              <NavLink
+                to="/management"
+                alignItems="center"
+                gap="1.2rem"
+                className={isPathAdManagement && 'active'}
+              >
                 <IconMenu02Off width="2rem" height="2rem" />
                 <span>광고관리</span>
               </NavLink>
@@ -132,8 +155,20 @@ const NavLink = styled(Link)`
   &:hover .menu-ad-management {
     fill: ${({ theme }) => theme.colors.PURPLE};
   }
+
   &:hover > span {
     color: ${({ theme }) => theme.colors.PURPLE};
+  }
+
+  &.active {
+    .menu-ad-center,
+    .menu-ad-management {
+      fill: ${({ theme }) => theme.colors.PURPLE};
+    }
+
+    > span {
+      color: ${({ theme }) => theme.colors.PURPLE};
+    }
   }
 `;
 

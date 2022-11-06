@@ -1,6 +1,11 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import CustomSelect from '../components/select/CustomSelect';
+import useAdManagement from '../hooks/useAdManagement';
+import useFilterAdManagement from '../hooks/useFilterAdManagement';
+import { adManagementCardListSelector } from '../recoil/adManagement';
 import {
   CardLayoutStyle,
   FlexBox,
@@ -10,27 +15,41 @@ import {
 } from '../style/common.style';
 
 const AdvertisingManagement = () => {
+  useAdManagement();
+  const adManagementCardList = useRecoilValue(adManagementCardListSelector);
+  const { onStatusChange, getFilteredList } = useFilterAdManagement();
+  const filteredList = getFilteredList(adManagementCardList);
+
   return (
     <MainHeaderLayout>
       <PageTitleH2>광고관리</PageTitleH2>
       <AdManagementCardSection flexDirection="column" gap="4rem">
         <FlexBox justifyContent="space-between">
           {/* TODO: react-select */}
+          <CustomSelect
+            defaultValue={{ label: '전체', value: 'all' }}
+            options={[
+              { label: '전체', value: 'all' },
+              { label: '진행중', value: 'active' },
+              { label: '중단됨', value: 'ended' },
+            ]}
+            onChange={onStatusChange}
+            padding="0.4rem 0.2rem"
+            isLightFont
+          />
           <AdCreateButton>광고 만들기</AdCreateButton>
         </FlexBox>
         <AdCardSection gap="2rem">
-          {[1, 2, 3, 4, 5, 6].map(() => (
-            <AdCardArticle flexDirection="column" gap="2rem">
-              <CardTitleH2>웹광고_202106031203030</CardTitleH2>
+          {filteredList.map(listItem => (
+            <AdCardArticle key={listItem.id} flexDirection="column" gap="2rem">
+              <CardTitleH2>{listItem.title}</CardTitleH2>
               <CardContentList>
-                <ContentItem>
-                  <GrayFontParagraph>상태</GrayFontParagraph>
-                  <ContentParagraph>진행중</ContentParagraph>
-                </ContentItem>
-                <ContentItem>
-                  <GrayFontParagraph>광고 생성일</GrayFontParagraph>
-                  <ContentParagraph>2021-06-04</ContentParagraph>
-                </ContentItem>
+                {listItem.report.map(reportItem => (
+                  <ContentItem key={reportItem.key}>
+                    <GrayFontParagraph>{reportItem.name}</GrayFontParagraph>
+                    <ContentParagraph>{reportItem.value}</ContentParagraph>
+                  </ContentItem>
+                ))}
               </CardContentList>
               <AdModifyButton>수정하기</AdModifyButton>
             </AdCardArticle>
@@ -55,12 +74,14 @@ const AdCardSection = styled.section`
 `;
 const AdCardArticle = styled.article`
   ${FlexStyle}
+
   min-width: 30.5rem;
   padding: 4rem 2rem;
   border: 1px solid #d1d8dc;
   border-radius: 10px;
 `;
 const CardContentList = styled.ul``;
+
 const ContentItem = styled.li`
   ${FlexStyle}
   padding: 1.3rem 0;
@@ -71,7 +92,7 @@ const ContentItem = styled.li`
   }
 
   > p {
-    flex-grow: 1;
+    flex: 1 1 50%;
   }
 `;
 
@@ -88,6 +109,7 @@ const ContentParagraph = styled.p`
 
 const AdCreateButton = styled.button`
   padding: 1.2rem 2rem;
+  height: 4rem;
   font-size: 1.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.WHITE};
