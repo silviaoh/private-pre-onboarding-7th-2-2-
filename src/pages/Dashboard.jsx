@@ -34,7 +34,7 @@ const Dashboard = () => {
               </NumberStatusBox>
             ))}
           </NumberStatusSection>
-          <ChartSection></ChartSection>
+          <ChartSection>{/* TODO: chart.js */}</ChartSection>
         </CardLayoutSection>
       </IntegratedAdStatusSection>
     </MainHeaderLayout>

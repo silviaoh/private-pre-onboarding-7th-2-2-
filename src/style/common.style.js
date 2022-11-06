@@ -26,10 +26,14 @@ export const GrayFontParagraph = styled.p`
   ${GrayFontStyle}
 `;
 
-export const CardLayoutSection = styled.section`
+export const CardLayoutStyle = css`
   padding: 4rem;
   background-color: ${({ theme }) => theme.colors.WHITE};
   border-radius: 20px;
+`;
+
+export const CardLayoutSection = styled.section`
+  ${CardLayoutStyle}
 `;
 
 export const PageTitleH2 = styled.h2`

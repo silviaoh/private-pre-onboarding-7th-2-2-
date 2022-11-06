@@ -23,13 +23,15 @@ const SideNavLayoutSection = styled.section`
   background-color: ${({ theme }) => theme.colors.BACKGROUND_GRAY};
 
   > aside {
-    flex-basis: 35rem;
+    flex-basis: 32rem;
     flex-grow: 1;
+    position: fixed;
+    height: 100%;
   }
 `;
 
 const SideNavLayoutMain = styled.main`
+  margin: 0 4rem 8rem 32rem;
   background-color: ${({ theme }) => theme.colors.BACKGROUND_GRAY};
-  margin-right: 4rem;
   width: 100%;
 `;

@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   body {
 	  line-height: 1;
     background-color: ${({ theme }) => theme.colors.LIGHTGRAY};
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   ol, ul {
@@ -52,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: 0;
   }
 
   input:focus {
