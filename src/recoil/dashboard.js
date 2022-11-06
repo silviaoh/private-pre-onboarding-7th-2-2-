@@ -61,4 +61,29 @@ const filteredAdStatusListSelector = selector({
   },
 });
 
-export { adStatusListAtom, filteredAdStatusListSelector };
+const graphSelector = selector({
+  key: 'graph',
+  get: ({ get }) => {
+    const adStatusList = get(adStatusListAtom);
+    const timeOfStartDate = get(startDateAtom).getTime();
+    const timeOfEndDate = get(endDateAtom).getTime() + 1000 * 60 * 60 * 24;
+
+    const filtered = adStatusList.filter(statusItem => {
+      const timeOfStatusItem = new Date(statusItem.date).getTime();
+      return (
+        timeOfStartDate <= timeOfStatusItem && timeOfStatusItem <= timeOfEndDate
+      );
+    });
+    return {
+      labels: filtered.map(statusItem => statusItem.date),
+      roas: filtered.map(statusItem => statusItem.roas),
+      cost: filtered.map(statusItem => statusItem.cost),
+      imp: filtered.map(statusItem => statusItem.imp),
+      click: filtered.map(statusItem => statusItem.click),
+      cvr: filtered.map(statusItem => statusItem.cvr),
+      convValue: filtered.map(statusItem => statusItem.convValue),
+    };
+  },
+});
+
+export { adStatusListAtom, filteredAdStatusListSelector, graphSelector };

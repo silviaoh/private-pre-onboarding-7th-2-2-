@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { IconPolygonDown } from '../assets';
+import LineChart from '../components/chart/LineChart';
 import Datepicker from '../components/datepicker/ArrangeDatepicker';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
 import useAdStatus from '../hooks/useAdStatus';
@@ -52,7 +53,9 @@ const Dashboard = () => {
               </NumberStatusBox>
             ))}
           </NumberStatusSection>
-          <ChartSection>{/* TODO: chart.js */}</ChartSection>
+          <ChartSection>
+            <LineChart />
+          </ChartSection>
         </CardLayoutSection>
       </IntegratedAdStatusSection>
     </MainHeaderLayout>
