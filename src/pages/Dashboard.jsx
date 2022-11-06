@@ -1,7 +1,12 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { IconPolygonDown } from '../assets';
+import Datepicker from '../components/datepicker/ArrangeDatepicker';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import useAdStatus from '../hooks/useAdStatus';
+import { filteredAdStatusListSelector } from '../recoil/dashboard';
 import {
   CardLayoutSection,
   FlexBox,
@@ -11,24 +16,37 @@ import {
 } from '../style/common.style';
 
 const Dashboard = () => {
+  const { adStatusList, setAdStatusList } = useAdStatus();
+  const filteredAdStatusList = useRecoilValue(filteredAdStatusListSelector);
+
   return (
     <MainHeaderLayout>
-      <DashboardTitleSection>
+      <DashboardTitleSection justifyContent="space-between" alignItems="center">
         <PageTitleH2>대시보드</PageTitleH2>
         {/* TODO: react-datepicker */}
+        <Datepicker
+          adStatusList={adStatusList}
+          setAdStatusList={setAdStatusList}
+        />
       </DashboardTitleSection>
       <IntegratedAdStatusSection flexDirection="column" gap="2rem">
         <IntegratedAdStatusH3>통합 광고 현황</IntegratedAdStatusH3>
         <CardLayoutSection>
           <NumberStatusSection gap="2rem">
-            {[1, 2, 3, 4, 5, 6].map(() => (
+            {filteredAdStatusList.map(adStatusItem => (
               <NumberStatusBox flexDirection="column" gap="1rem">
-                <StatueTitleH3>ROAS</StatueTitleH3>
+                <StatueTitleH3>{adStatusItem.name}</StatueTitleH3>
                 <FlexBox justifyContent="space-between">
-                  <StatusValueSpan>697%</StatusValueSpan>
+                  <StatusValueSpan>
+                    {adStatusItem.currSum}
+                    {adStatusItem.unit}
+                  </StatusValueSpan>
                   <FlexBox gap="0.5rem">
                     <IconPolygonDown width="1rem" height="0.8rem" />
-                    <GrayFontParagraph>18%</GrayFontParagraph>
+                    <GrayFontParagraph>
+                      {adStatusItem.variations}
+                      {adStatusItem.unit}
+                    </GrayFontParagraph>
                   </FlexBox>
                 </FlexBox>
               </NumberStatusBox>
@@ -44,6 +62,7 @@ const Dashboard = () => {
 export default Dashboard;
 
 const DashboardTitleSection = styled.section`
+  ${FlexStyle}
   padding: 2.5rem 0;
 `;
 
