@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import CustomSelect from '../components/select/CustomSelect';
 import {
   CardLayoutStyle,
   FlexBox,
@@ -16,6 +17,16 @@ const AdvertisingManagement = () => {
       <AdManagementCardSection flexDirection="column" gap="4rem">
         <FlexBox justifyContent="space-between">
           {/* TODO: react-select */}
+          <CustomSelect
+            defaultValue={{ label: '전체', value: 'all' }}
+            options={[
+              { label: '전체', value: 'all' },
+              { label: '진행중', value: 'processing' },
+              { label: '중단됨', value: 'exit' },
+            ]}
+            padding="0.4rem 0.2rem"
+            isLightFont
+          />
           <AdCreateButton>광고 만들기</AdCreateButton>
         </FlexBox>
         <AdCardSection gap="2rem">
@@ -88,6 +99,7 @@ const ContentParagraph = styled.p`
 
 const AdCreateButton = styled.button`
   padding: 1.2rem 2rem;
+  height: 4rem;
   font-size: 1.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.WHITE};

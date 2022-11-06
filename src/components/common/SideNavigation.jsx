@@ -8,6 +8,7 @@ import {
   GrayFontParagraph,
   GrayFontStyle,
 } from '../../style/common.style';
+import CustomSelect from '../select/CustomSelect';
 
 const SideNavigation = () => {
   const location = useLocation();
@@ -28,6 +29,15 @@ const SideNavigation = () => {
           <section>
             <NavTitleH3>서비스</NavTitleH3>
             {/* TODO: react-select */}
+            <CustomSelect
+              placeholder="서비스 선택하기"
+              options={[
+                { label: '매드업', value: 'madup' },
+                { label: '서비스 추가하기', value: 'add' },
+              ]}
+              padding="1.2rem 1rem"
+              marginBottom="5.5rem"
+            />
           </section>
           <section>
             <NavTitleH3>광고 센터</NavTitleH3>
