@@ -57,6 +57,7 @@ const filteredAdStatusListSelector = selector({
         unit: getUnitOfAdStatus(key),
       };
     });
+
     return adStatusDataToShow;
   },
 });
