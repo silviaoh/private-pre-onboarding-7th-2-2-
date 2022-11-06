@@ -1,19 +1,29 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { statusAtom } from '../recoil/adManagement';
 
 /**
  * onChange: () => void
+ * getFilteredList: adManagementFilteredCardItem[]
  * status: string
  */
 const useFilterAdManagement = () => {
   const [status, setStatus] = useRecoilState(statusAtom);
 
-  const onStatusChange = value => {
-    console.log('value', value);
-  };
+  const onStatusChange = useCallback(
+    value => setStatus(value.value),
+    [setStatus]
+  );
 
-  return { status, onStatusChange };
+  const getFilteredList = useCallback(
+    list =>
+      list.filter(listItem =>
+        status === 'all' ? true : listItem.report[0].engValue === status
+      ),
+    [status]
+  );
+
+  return { status, onStatusChange, getFilteredList };
 };
 
 export default useFilterAdManagement;

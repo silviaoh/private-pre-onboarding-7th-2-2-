@@ -17,7 +17,8 @@ import {
 const AdvertisingManagement = () => {
   useAdManagement();
   const adManagementCardList = useRecoilValue(adManagementCardListSelector);
-  const { status, onStatusChange } = useFilterAdManagement();
+  const { onStatusChange, getFilteredList } = useFilterAdManagement();
+  const filteredList = getFilteredList(adManagementCardList);
 
   return (
     <MainHeaderLayout>
@@ -29,8 +30,8 @@ const AdvertisingManagement = () => {
             defaultValue={{ label: '전체', value: 'all' }}
             options={[
               { label: '전체', value: 'all' },
-              { label: '진행중', value: 'processing' },
-              { label: '중단됨', value: 'exit' },
+              { label: '진행중', value: 'active' },
+              { label: '중단됨', value: 'ended' },
             ]}
             onChange={onStatusChange}
             padding="0.4rem 0.2rem"
@@ -39,7 +40,7 @@ const AdvertisingManagement = () => {
           <AdCreateButton>광고 만들기</AdCreateButton>
         </FlexBox>
         <AdCardSection gap="2rem">
-          {adManagementCardList.map(listItem => (
+          {filteredList.map(listItem => (
             <AdCardArticle key={listItem.id} flexDirection="column" gap="2rem">
               <CardTitleH2>{listItem.title}</CardTitleH2>
               <CardContentList>

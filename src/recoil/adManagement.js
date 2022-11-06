@@ -22,6 +22,7 @@ const adManagementCardListSelector = selector({
             key: 'status',
             name: '상태',
             value: statusKoName,
+            engValue: listItem.status,
           },
           {
             key: 'startDate',
