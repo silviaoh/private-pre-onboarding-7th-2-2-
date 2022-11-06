@@ -1,13 +1,17 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { IconPolygonDown, IconPolygonUp } from '../assets';
 import LineChart from '../components/chart/LineChart';
 import Datepicker from '../components/datepicker/ArrangeDatepicker';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
+import CustomSelect from '../components/select/CustomSelect';
+import { CHART_OPTIONS } from '../constant/template';
 import useAdStatus from '../hooks/useAdStatus';
-import { filteredAdStatusListSelector } from '../recoil/dashboard';
+import {
+  filteredAdStatusListSelector,
+  graphOptionsSelector,
+} from '../recoil/dashboard';
 import {
   CardLayoutSection,
   FlexBox,
@@ -15,17 +19,20 @@ import {
   GrayFontParagraph,
   PageTitleH2,
 } from '../style/common.style';
-import { getNumberToKorean } from '../utils/get';
 
 const Dashboard = () => {
   const { adStatusList, setAdStatusList } = useAdStatus();
   const filteredAdStatusList = useRecoilValue(filteredAdStatusListSelector);
-  console.log('filteredAdStatusList', filteredAdStatusList);
+
+  const [graphOptions, setGraphOptions] = useRecoilState(graphOptionsSelector);
+  const graphNextOptions = CHART_OPTIONS.filter(
+    option => option.value !== graphOptions[0]
+  );
+
   return (
     <MainHeaderLayout>
       <DashboardTitleSection justifyContent="space-between" alignItems="center">
         <PageTitleH2>대시보드</PageTitleH2>
-        {/* TODO: react-datepicker */}
         <Datepicker
           adStatusList={adStatusList}
           setAdStatusList={setAdStatusList}
@@ -59,6 +66,36 @@ const Dashboard = () => {
             ))}
           </NumberStatusSection>
           <ChartSection>
+            <FlexBox gap="1rem" margin="4rem 0">
+              <CustomSelect
+                placeholder="옵션1"
+                options={CHART_OPTIONS}
+                defaultValue={CHART_OPTIONS.find(
+                  option => option.value === graphOptions[0]
+                )}
+                onChange={option => {
+                  const temp = [...graphOptions];
+                  temp.splice(0, 1, option.value);
+                  setGraphOptions(temp);
+                }}
+                isLightFont
+              />
+              <CustomSelect
+                placeholder="옵션2"
+                options={graphNextOptions}
+                value={
+                  graphNextOptions.find(
+                    option => option.value === graphOptions[1]
+                  ) || ''
+                }
+                onChange={option => {
+                  const temp = [...graphOptions];
+                  temp.splice(1, 1, option.value);
+                  setGraphOptions(temp);
+                }}
+                isLightFont
+              />
+            </FlexBox>
             <LineChart />
           </ChartSection>
         </CardLayoutSection>
@@ -81,8 +118,10 @@ const IntegratedAdStatusSection = styled.section`
 const NumberStatusSection = styled.section`
   ${FlexStyle}
   flex-wrap: wrap;
-  margin-bottom: 4.2rem;
 `;
+
+const OptionSection = styled.section``;
+
 const ChartSection = styled.section``;
 
 const NumberStatusBox = styled.div`

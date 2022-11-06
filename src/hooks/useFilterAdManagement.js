@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { statusAtom } from '../recoil/adManagement';
 
 /**
+ * TODO : REfactoring
  * onChange: () => void
  * getFilteredList: adManagementFilteredCardItem[]
  * status: string

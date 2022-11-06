@@ -67,6 +67,7 @@ const filteredAdStatusListSelector = selector({
   },
 });
 
+// Graph
 const graphSelector = selector({
   key: 'graph',
   get: ({ get }) => {
@@ -92,4 +93,28 @@ const graphSelector = selector({
   },
 });
 
-export { adStatusListAtom, filteredAdStatusListSelector, graphSelector };
+const graphOptionsAtom = atom({
+  key: 'graphOptionsAtom',
+  default: ['roas', 'cost'],
+});
+
+const graphOptionsSelector = selector({
+  key: 'graphOptionSelector',
+  get: ({ get }) => {
+    const graphOptions = get(graphOptionsAtom);
+    return graphOptions;
+  },
+  set: ({ set }, optionArray) => {
+    if (optionArray[0] === optionArray[1])
+      set(graphOptionsAtom, [optionArray[0], '']);
+    else set(graphOptionsAtom, optionArray);
+  },
+});
+
+export {
+  adStatusListAtom,
+  graphOptionsAtom,
+  filteredAdStatusListSelector,
+  graphSelector,
+  graphOptionsSelector,
+};
