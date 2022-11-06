@@ -1,11 +1,13 @@
 import { atom, selector } from 'recoil';
 import { endDateAtom, startDateAtom } from './datepicker';
-import getTimeOfPast from '../utils/getTimeOfPast';
 import { AD_STATUS_TEMPLATE } from '../constant/template';
-import getDiffOfTime from '../utils/getDiffOfTime';
-import getNameOfAdStatus from '../utils/getNameOfAdStatus';
-import getValueOfAdStatus from '../utils/getValueOfAdStatus';
-import getUnitOfAdStatus from '../utils/getUnitOfAdStatus';
+import { getDiffOfTime, getTimeOfPast } from '../utils/time';
+import {
+  getNameOfAdStatus,
+  getVariationsOfAdStatus,
+  getUnitOfAdStatus,
+  getValueWithKoreanUnit,
+} from '../utils/get';
 
 const adStatusListAtom = atom({
   key: 'adStatusList',
@@ -52,8 +54,11 @@ const filteredAdStatusListSelector = selector({
       return {
         key,
         name: getNameOfAdStatus(key),
-        currSum,
-        variations: getValueOfAdStatus(key, prevSum, currSum),
+        currSum: getValueWithKoreanUnit(key, currSum),
+        variations: getVariationsOfAdStatus(key, prevSum, currSum),
+        isDecreased: getVariationsOfAdStatus(key, prevSum, currSum).includes(
+          '-'
+        ),
         unit: getUnitOfAdStatus(key),
       };
     });

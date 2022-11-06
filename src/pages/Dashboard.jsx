@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { IconPolygonDown } from '../assets';
+import { IconPolygonDown, IconPolygonUp } from '../assets';
 import LineChart from '../components/chart/LineChart';
 import Datepicker from '../components/datepicker/ArrangeDatepicker';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
@@ -15,11 +15,12 @@ import {
   GrayFontParagraph,
   PageTitleH2,
 } from '../style/common.style';
+import { getNumberToKorean } from '../utils/get';
 
 const Dashboard = () => {
   const { adStatusList, setAdStatusList } = useAdStatus();
   const filteredAdStatusList = useRecoilValue(filteredAdStatusListSelector);
-
+  console.log('filteredAdStatusList', filteredAdStatusList);
   return (
     <MainHeaderLayout>
       <DashboardTitleSection justifyContent="space-between" alignItems="center">
@@ -43,7 +44,11 @@ const Dashboard = () => {
                     {adStatusItem.unit}
                   </StatusValueSpan>
                   <FlexBox gap="0.5rem">
-                    <IconPolygonDown width="1rem" height="0.8rem" />
+                    {adStatusItem.isDecreased ? (
+                      <IconPolygonDown width="1rem" height="0.8rem" />
+                    ) : (
+                      <IconPolygonUp width="1rem" height="0.8rem" />
+                    )}
                     <GrayFontParagraph>
                       {adStatusItem.variations}
                       {adStatusItem.unit}
@@ -76,6 +81,7 @@ const IntegratedAdStatusSection = styled.section`
 const NumberStatusSection = styled.section`
   ${FlexStyle}
   flex-wrap: wrap;
+  margin-bottom: 4.2rem;
 `;
 const ChartSection = styled.section``;
 
