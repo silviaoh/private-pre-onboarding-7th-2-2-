@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import MainHeaderLayout from '../components/layout/MainHeaderLayout';
 import CustomSelect from '../components/select/CustomSelect';
+import { STATUS_OPTIONS } from '../constant/template';
 import useAdManagement from '../hooks/useAdManagement';
 import useFilterAdManagement from '../hooks/useFilterAdManagement';
 import { adManagementCardListSelector } from '../recoil/adManagement';
@@ -17,7 +18,7 @@ import {
 const AdvertisingManagement = () => {
   useAdManagement();
   const adManagementCardList = useRecoilValue(adManagementCardListSelector);
-  const { onStatusChange, getFilteredList } = useFilterAdManagement();
+  const { status, onStatusChange, getFilteredList } = useFilterAdManagement();
   const filteredList = getFilteredList(adManagementCardList);
 
   return (
@@ -25,14 +26,9 @@ const AdvertisingManagement = () => {
       <PageTitleH2>광고관리</PageTitleH2>
       <AdManagementCardSection flexDirection="column" gap="4rem">
         <FlexBox justifyContent="space-between">
-          {/* TODO: react-select */}
           <CustomSelect
-            defaultValue={{ label: '전체', value: 'all' }}
-            options={[
-              { label: '전체', value: 'all' },
-              { label: '진행중', value: 'active' },
-              { label: '중단됨', value: 'ended' },
-            ]}
+            options={STATUS_OPTIONS}
+            value={STATUS_OPTIONS.find(option => option.value === status) || ''}
             onChange={onStatusChange}
             padding="0.4rem 0.2rem"
             isLightFont
