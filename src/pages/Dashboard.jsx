@@ -43,7 +43,11 @@ const Dashboard = () => {
         <CardLayoutSection>
           <NumberStatusSection gap="2rem">
             {filteredAdStatusList.map(adStatusItem => (
-              <NumberStatusBox flexDirection="column" gap="1rem">
+              <NumberStatusBox
+                key={adStatusItem.key}
+                flexDirection="column"
+                gap="1rem"
+              >
                 <StatueTitleH3>{adStatusItem.name}</StatueTitleH3>
                 <FlexBox justifyContent="space-between">
                   <StatusValueSpan>

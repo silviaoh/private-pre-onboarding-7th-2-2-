@@ -12,7 +12,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { useRecoilValue } from 'recoil';
 import { graphOptionsAtom, graphSelector } from '../../recoil/dashboard';
-import { getWillChangeDatasetIdx } from '../../utils/get';
+import { OPTIONS } from '../../constant/chart';
 
 ChartJS.register(
   CategoryScale,
@@ -76,34 +76,6 @@ const LineChart = () => {
       },
       //클릭수
     ],
-  };
-
-  const OPTIONS = {
-    responsive: true,
-    elements: {
-      point: { radius: 0 },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {},
-    },
-    stacked: false,
-    scales: {
-      x: { grid: { display: false } },
-      yWon: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-        grid: { border: 'none' },
-      },
-      yPercent: {
-        type: 'linear',
-        display: true,
-        position: 'right',
-      },
-    },
   };
 
   const updateAllHide = (chart, value) => {

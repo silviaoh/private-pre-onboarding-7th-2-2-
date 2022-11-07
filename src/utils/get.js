@@ -55,6 +55,7 @@ const getValueWithKoreanUnit = (key, value) => {
     case 'cost':
     case 'imp':
     case 'convValue':
+    case 'budget':
       return getNumberToKorean(value);
     case 'click':
     case 'cvr':

@@ -5,10 +5,7 @@ const useDatepickerState = (atom = null) => {
   const [date, setDate] = useRecoilState(atom);
 
   const onChange = useCallback(
-    selectedDate => {
-      console.log('selectedDate', selectedDate);
-      setDate(selectedDate);
-    },
+    selectedDate => setDate(selectedDate),
     [setDate]
   );
 

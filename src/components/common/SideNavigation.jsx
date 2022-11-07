@@ -42,23 +42,20 @@ const SideNavigation = () => {
           <section>
             <NavTitleH3>광고 센터</NavTitleH3>
             <AdvertisingCenterNav flexDirection="column" gap="0.2rem">
-              <NavLink
-                to="/"
-                alignItems="center"
-                gap="1.2rem"
-                className={isPathDashboard && 'active'}
-              >
-                <IconMenu01Off width="2rem" height="2rem" />
-                <span>대시보드</span>
+              <NavLink to="/" className={isPathDashboard && 'active'}>
+                <FlexBox alignItems="center" gap="1.2rem">
+                  <IconMenu01Off width="2rem" height="2rem" />
+                  <span>대시보드</span>
+                </FlexBox>
               </NavLink>
               <NavLink
                 to="/management"
-                alignItems="center"
-                gap="1.2rem"
                 className={isPathAdManagement && 'active'}
               >
-                <IconMenu02Off width="2rem" height="2rem" />
-                <span>광고관리</span>
+                <FlexBox alignItems="center" gap="1.2rem">
+                  <IconMenu02Off width="2rem" height="2rem" />
+                  <span>광고관리</span>
+                </FlexBox>
               </NavLink>
             </AdvertisingCenterNav>
           </section>
@@ -156,7 +153,7 @@ const NavLink = styled(Link)`
     fill: ${({ theme }) => theme.colors.PURPLE};
   }
 
-  &:hover > span {
+  &:hover > div > span {
     color: ${({ theme }) => theme.colors.PURPLE};
   }
 
@@ -166,7 +163,7 @@ const NavLink = styled(Link)`
       fill: ${({ theme }) => theme.colors.PURPLE};
     }
 
-    > span {
+    > div > span {
       color: ${({ theme }) => theme.colors.PURPLE};
     }
   }

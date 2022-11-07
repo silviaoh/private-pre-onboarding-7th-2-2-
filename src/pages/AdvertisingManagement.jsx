@@ -38,7 +38,9 @@ const AdvertisingManagement = () => {
         <AdCardSection gap="2rem">
           {filteredList.map(listItem => (
             <AdCardArticle key={listItem.id} flexDirection="column" gap="2rem">
-              <CardTitleH2>{listItem.title}</CardTitleH2>
+              <CardTitleH2>
+                {listItem.adType}_{listItem.title}
+              </CardTitleH2>
               <CardContentList>
                 {listItem.report.map(reportItem => (
                   <ContentItem key={reportItem.key}>
@@ -76,6 +78,7 @@ const AdCardArticle = styled.article`
   border: 1px solid #d1d8dc;
   border-radius: 10px;
 `;
+
 const CardContentList = styled.ul``;
 
 const ContentItem = styled.li`
