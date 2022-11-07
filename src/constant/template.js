@@ -33,4 +33,10 @@ const CHART_OPTIONS = [
   },
 ];
 
-export { AD_STATUS_TEMPLATE, CHART_OPTIONS };
+const STATUS_OPTIONS = [
+  { label: '전체', value: 'all' },
+  { label: '진행중', value: 'active' },
+  { label: '중단됨', value: 'ended' },
+];
+
+export { AD_STATUS_TEMPLATE, CHART_OPTIONS, STATUS_OPTIONS };
